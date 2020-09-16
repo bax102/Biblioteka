@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detale Książki</title>
+</head>
+<body>
+<h1>Kto wypożyczył wskazaną książkę o id: <span th:text="${ksiazkaDetails.id}"></span></h1>
+<div th:replace = "fragments :: navigator"></div>
+<br/>
+<table>
+    <tr>
+        <td>Id: </td>
+        <td th:text="${ksiazkaDetails.id}"></td>
+    </tr>
+    <tr>
+        <td>Nazwisko Autora: </td>
+        <td th:text="${ksiazkaDetails.nazwiskoAutora}"></td>
+    </tr>
+    <tr>
+        <td>Tytuł: </td>
+        <td th:text="${ksiazkaDetails.tytul}"></td>
+    </tr>
+    <tr>
+        <td>Czy dla dorosłych?</td>
+        <td th:text="${ksiazkaDetails.czyDlaDoroslych}"></td>
+    </tr>
+    <tr>
+        <td>Ile jest dostępnych sztuk: </td>
+        <td th:text ="${ksiazkaDetails.ileSztuk}"></td>
+    </tr>
+</table>
+<br/>
+<a th:href="@{/czytelnik/add(ksiazka_id=${ksiazkaDetails.id})}"> Dodaj czytelnika </a>
+<table style="border: 1px solid">
+    <thread>
+        <tr>
+            <td>Id</td>
+            <td>Oddział</td>
+            <td>NazwiskoCzytelnika</td>
+            <td>Data dodania</td>
+        </tr>
+    </thread>
+    <tbody>
+    <tr th:each="czytelnik : ${ksiazkaDetails.listaCzytelnikow}">
+        <td th:text="${czytelnik.id}"></td>
+        <td th:text="${czytelnik.oddzial}"></td>
+        <td th:text="${czytelnik.nazwiskoCzytelnika}"></td>
+        <td th:text="${czytelnik.dataDodania}"></td>
+        <td><a th:href="@{/czytelnik/edit(czytelnikId=${czytelnik.id})}">Edit</a></td>
+    </tr>
+    </tbody>
+    </thread>
+</table>
+
+
+
+</body>
+</html>

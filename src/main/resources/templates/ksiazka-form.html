@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularz książki</title>
+</head>
+<body>
+<h1>Formularz dodawania nowych ksiażek</h1>
+<div th:replace="fragments :: navigator"></div>
+</br>
+<form th:action="@{/ksiazka/add}" th:method="post" th:object="${newKsiazka}">
+    <input type="hidden" th:field="*{id}">
+    Nazwisko Autora: <input th:field="*{nazwiskoAutora}"/>
+    <br/>
+    Tytuł: <input th:field="*{tytul}"/>
+    <br/>
+    Czy dla dorosłych? <input th:field="*{czyDlaDoroslych}"/>
+    <br/>
+    Ile zostało sztuk: <input th:field="*{ileSztuk}"/>
+    <br/>
+    <input type="submit">
+
+</form>
+</body>
+</html>

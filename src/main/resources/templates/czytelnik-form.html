@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularz czytelnika</title>
+</head>
+<body>
+<h1> Formularz do ksiażki: <span th:text = "${ksiazkaId}"></span> </h1>
+<div th:replace="fragments :: navigator"></div>
+<br/>
+<form th:action="@{/czytelnik/add}" th:method="post" th:object="${newCzytelnik}">
+    <input type="hidden" name="okreslone" th:value="${ksiazkaId}">
+    <input type="hidden" th:field="*{dataDodania}";>
+    <input type="hidden" th:field="*{id}";>
+    Oddział biblioteki:
+    <select th:field="*{oddzial}">
+        <option th:each="od : ${oddzial}"
+                th:value="${od}"
+                th:text="${od.getOpis()}">
+        </option>
+    </select>
+    <br/>
+    Nazwisko czytelnika : <input type="text" th:field="*{nazwiskoCzytelnika}"/>
+    <br/>
+    <input type = "submit";>
+</form>
+
+</body>
+</html>

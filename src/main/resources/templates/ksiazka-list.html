@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Książek</title>
+    <style>
+        td {
+            border: 1px solid #000;
+         }
+        table {
+            border: 1px solid #000;
+        }
+        th {
+            border: 1px solid #000
+        }
+    </style>
+</head>
+<body>
+<h1>A oto lista książek</h1>
+<div th:replace="fragments :: navigator"></div>
+</br>
+    <table>
+        <thread>
+        <tr>
+            <th>Id</th>
+            <th>Autor</th>
+            <th>Tytuł</th>
+            <th>Czy dla dorosłych</th>
+            <th>Ile zostało sztuk</th>
+            <th>Usuń</th>
+            <th>Edytuj</th>
+            <th>Czytelnicy</th>
+        </tr>
+        </thread>
+    <tbody>
+        <tr th:each="ksiazka : ${listaKsiazek}">
+        <td th:text="${ksiazka.id}"></td>
+            <td th:text="${ksiazka.nazwiskoAutora}"></td>
+            <td th:text="${ksiazka.tytul}"></td>
+            <td th:text="${ksiazka.czyDlaDoroslych}"></td>
+            <td th:text="${ksiazka.ileSztuk}"></td>
+            <td>
+            <a th:href="@{'/ksiazka/delete/' +${ksiazka.id}}">Delete</a>
+            </td>
+            <td>
+                <a th:href="@{'/ksiazka/edit/' +${ksiazka.id}}">Edit</a>
+            </td>
+            <td>
+                <a th:href="@{/ksiazka/details(ksiazkaIdentifier=${ksiazka.id})}">Czytelnicy</a>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</body>
+</html>
